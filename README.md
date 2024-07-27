@@ -21,7 +21,7 @@ This course is divided into three parts:
 - [First Part (about Sorting)](/SORTING)
 - [Second Part (about Graphs)](/GRAPHS)
 - [Third Part (about DP)](/DYNAMIC_PROGRAMMING)
-- [Suplementary Colloquium](/suplementary colloquium)
+- [Suplementary Colloquium](/supplementary_colloquium)
 - [Final Exam](/FinalExam)
 
 Happy Coding!
