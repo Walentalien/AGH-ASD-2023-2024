@@ -1,48 +1,42 @@
 """
-Solved using counting sort - optimal for this problem
+NOTE: We had to implement the  min heap ds ourselves
+
+Solved using min heap - optimal for this problem
 Valentyn Oliinyk
-T/S - O(nlogn)/O(1)
-
+T/S - O(n*log(k)/O(1)
+-- similar to: sort a nearly sorted array( K sorted array)
 """
+import heapq
 from zad1testy import Node, runtests
-# Function to sort an array using
-# insertion sort
 
-
-def insertionSort(A, size):
-	i, key, j = 0, 0, 0
-	for i in range(size):
-		key = A[i]
-		j = i-1
-
-		# Move elements of A[0..i-1], that are
-		# greater than key, to one position
-		# ahead of their current position.
-		# This loop will run at most k times
-		while j >= 0 and A[j] > key:
-			A[j + 1] = A[j]
-			j = j - 1
-		A[j + 1] = key
-
-def insertionSort(A, size):
-	dummy = head = Node()
-	
-	i, key, j = 0, 0, 0
-	for i in range(size):
-		key = A[i]
-		j = i-1
-
-		# Move elements of A[0..i-1], that are
-		# greater than key, to one position
-		# ahead of their current position.
-		# This loop will run at most k times
-		while j >= 0 and A[j] > key:
-			A[j + 1] = A[j]
-			j = j - 1
-		A[j + 1] = key
-def SortH(p, k):
-   return insertionSort(p,k)
+def sortKSortedLinkedList(head, k):
+    if not head:
+        return head
     
+    dummy = Node()
+    curr = dummy
+    heap = []
+    
+    node = head
+    for _ in range(k + 1):
+        if node:
+            heapq.heappush(heap, (node.val, node))
+            node = node.next
+    
+    while heap:
+        val, smallest = heapq.heappop(heap)
+        curr.next = smallest
+        curr = curr.next
+        
+        if node:
+            heapq.heappush(heap, (node.val, node))
+            node = node.next
+    
+    curr.next = None
+    return dummy.next
+
+def SortH(p, k):
+    return sortKSortedLinkedList(p, k)
 
 # zmien all_tests na True zeby uruchomic wszystkie testy
 runtests( SortH, all_tests = True )
